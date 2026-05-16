@@ -1,0 +1,230 @@
+/* 기본 초기화 및 변수 설정 */
+:root {
+    --primary-blue: #0066cc;
+    --primary-orange: #e47e1d;
+    --bg-light: #fafafa;
+    --bg-dark: #1b1b1b;
+    --text-main: #18181b;
+    --text-muted: #71717b;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
+}
+
+body {
+    color: var(--text-main);
+    line-height: 1.5;
+    background-color: #fff;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* 유틸리티 및 버튼 */
+.text-gradient {
+    background: linear-gradient(90deg, #e47e1d, #f5a623);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+.text-blue { color: var(--primary-blue); }
+
+.btn {
+    display: inline-block;
+    padding: 12px 24px;
+    font-weight: 600;
+    border-radius: 6px;
+    transition: 0.3s;
+    cursor: pointer;
+}
+.btn-blue { background: var(--primary-blue); color: #fff; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+.btn-blue:hover { background: #005bb5; }
+.btn-outline { border: 1px solid rgba(255,255,255,0.5); color: #fff; }
+.btn-outline:hover { background: rgba(255,255,255,0.1); }
+.btn-white-round { background: #fff; color: var(--primary-orange); border-radius: 50px; font-size: 14px; padding: 10px 20px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+
+/* 네비게이션 바 */
+.navbar {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    z-index: 100;
+    padding: 20px 0;
+    color: #fff;
+}
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.logo { font-size: 24px; font-weight: 800; display: flex; align-items: center; gap: 8px;}
+.nav-links a { margin: 0 16px; font-size: 14px; font-weight: 500; color: #d4d4d8; }
+.nav-links a:hover { color: #fff; }
+.nav-icons span { margin-left: 16px; cursor: pointer; }
+
+/* 히어로 섹션 */
+.hero {
+    height: 900px;
+    /* 확장자를 .png로 변경했습니다! */
+    background: linear-gradient(to right, rgba(0,0,0,0.8), rgba(0,0,0,0.2)), url('../images/v1_37.png') center/cover no-repeat;
+    display: flex;
+    align-items: center;
+    color: #fff;
+}
+.hero-content h1 { font-size: 90px; line-height: 1; font-weight: 900; margin-bottom: 24px; }
+.hero-content p { font-size: 22px; color: #d4d4d8; max-width: 500px; margin-bottom: 40px; }
+.hero-buttons { display: flex; gap: 16px; margin-bottom: 20px; }
+.hero-note { color: #a1a1aa; font-size: 13px; }
+
+/* 펀딩 배너 */
+.funding-banner {
+    background: var(--primary-orange);
+    padding: 20px 0;
+}
+.banner-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 24px;
+    color: #fff;
+    font-weight: 600;
+    font-size: 16px;
+}
+
+/* 아티클 섹션 (CSS Grid) */
+.latest-articles { padding: 100px 20px; }
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid #eaeaea;
+    padding-bottom: 16px;
+    margin-bottom: 40px;
+}
+.section-header h2 { font-size: 32px; font-weight: 900; }
+.view-all { color: var(--primary-blue); font-weight: 700; font-size: 14px; }
+
+.articles-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+}
+
+.sub-articles {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+}
+
+/* 카드 컴포넌트 */
+.card {
+    background: var(--bg-light);
+    border-radius: 12px;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 1px solid #f0f0f0;
+}
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+}
+.card-img { width: 100%; height: 180px; object-fit: cover; }
+.main-card .card-img { height: 350px; }
+.card-body { padding: 24px; }
+
+.badge {
+    display: inline-block;
+    padding: 4px 10px;
+    border-radius: 4px;
+    color: #fff;
+    font-size: 10px;
+    font-weight: 900;
+    margin-bottom: 12px;
+}
+.badge-red { background: #ff3366; }
+.badge-blue { background: #0066cc; }
+.badge-orange { background: #e47e1d; }
+.badge-purple { background: #8b5cf6; }
+.badge-green { background: #10b981; }
+
+.card h3 { font-size: 28px; font-weight: 900; margin-bottom: 12px; }
+.card h4 { font-size: 18px; font-weight: 800; margin-bottom: 12px; }
+.main-card p { font-size: 16px; color: var(--text-muted); margin-bottom: 24px; }
+
+.card-meta {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 12px;
+}
+.card-meta strong { color: #27272a; }
+.card-meta span { color: #a1a1aa; font-weight: 700; }
+
+/* 머티리얼 파이프라인 섹션 (Flexbox) */
+.material-pipeline {
+    display: flex;
+    align-items: center;
+    gap: 60px;
+    padding: 60px 20px 100px;
+}
+.material-image { flex: 1; }
+.material-image img {
+    width: 100%;
+    border-radius: 16px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+}
+.material-text { flex: 1; }
+.material-text h2 { font-size: 48px; font-weight: 900; line-height: 1.1; margin-bottom: 24px; }
+.material-text p { font-size: 18px; color: var(--text-muted); margin-bottom: 24px; }
+
+/* 렌더 CTA */
+.render-cta {
+    background: #f4f4f5;
+    text-align: center;
+    padding: 80px 20px;
+}
+.render-cta h2 { font-size: 36px; font-weight: 900; margin-bottom: 30px; }
+.render-cta p { margin-top: 20px; color: var(--text-muted); }
+
+/* 푸터 */
+.site-footer {
+    background: var(--bg-dark);
+    color: #a1a1aa;
+    padding: 60px 0 30px;
+}
+.footer-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 40px;
+    margin-bottom: 40px;
+}
+.footer-col strong { display: block; color: #fff; margin-bottom: 20px; font-size: 16px; }
+.footer-col a { display: block; margin-bottom: 12px; font-size: 14px; transition: 0.2s; }
+.footer-col a:hover { color: #fff; }
+
+.footer-bottom {
+    border-top: 1px solid #3f3f46;
+    padding-top: 30px;
+    display: flex;
+    justify-content: space-between;
+    font-size: 12px;
+}
+.footer-links a { margin-left: 20px; }
+
+/* 간단한 반응형 처리 (모바일/태블릿 지원) */
+@media (max-width: 992px) {
+    .hero-content h1 { font-size: 60px; }
+    .articles-grid, .material-pipeline, .footer-grid { grid-template-columns: 1fr; flex-direction: column; }
+    .sub-articles { grid-template-columns: 1fr; }
+}

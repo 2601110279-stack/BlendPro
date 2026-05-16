@@ -1,0 +1,199 @@
+/* 기본 초기화 및 다크 테마 변수 */
+:root {
+    --bg-main: #121212;
+    --bg-card: #1a1a1a;
+    --bg-card-hover: #222222;
+    --text-primary: #ffffff;
+    --text-secondary: #a1a1aa;
+    --border-color: #333333;
+    --accent-blue: #3b82f6;
+    --accent-orange: #f59e0b;
+    --accent-red: #ef4444;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
+}
+
+body {
+    background-color: var(--bg-main);
+    color: var(--text-primary);
+    line-height: 1.6;
+}
+
+a { text-decoration: none; color: inherit; }
+.container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
+
+/* 네비게이션 바 (공통) */
+.navbar {
+    background-color: #181818;
+    padding: 20px 0;
+    border-bottom: 1px solid var(--border-color);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+.nav-container { display: flex; justify-content: space-between; align-items: center; }
+.logo { font-size: 24px; font-weight: 800; display: flex; align-items: center; gap: 8px;}
+.nav-links a { margin: 0 16px; font-size: 14px; font-weight: 600; color: var(--text-secondary); transition: 0.3s;}
+.nav-links a:hover, .nav-links a.active { color: var(--text-primary); }
+.nav-icons span { margin-left: 16px; cursor: pointer; }
+
+/* 유틸리티 */
+.text-center { text-align: center; }
+.text-gradient-blue {
+    background: linear-gradient(90deg, #3b82f6, #8b5cf6);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* 버튼 스타일 */
+.btn {
+    display: inline-block;
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-weight: 700;
+    font-size: 14px;
+    cursor: pointer;
+    transition: 0.3s;
+    border: none;
+}
+.btn-white { background-color: #ffffff; color: #000000; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+.btn-white:hover { background-color: #e4e4e7; }
+.btn-dark { background-color: #333333; color: #ffffff; }
+.btn-dark:hover { background-color: #555555; }
+.btn-red { background-color: var(--accent-red); color: #ffffff; }
+.btn-red:hover { background-color: #dc2626; }
+.btn-outline { border: 1px solid var(--border-color); color: var(--text-primary); background: transparent; }
+.btn-outline:hover { border-color: var(--text-secondary); }
+
+/* 에듀케이션 히어로 섹션 */
+.edu-hero {
+    padding: 80px 0 60px;
+    background: radial-gradient(circle at center, rgba(59,130,246,0.1) 0%, rgba(18,18,18,1) 70%);
+}
+.edu-hero h1 { font-size: 56px; font-weight: 900; margin-bottom: 20px; letter-spacing: -1px;}
+.edu-hero p { font-size: 20px; color: var(--text-secondary); max-width: 600px; margin: 0 auto; }
+
+/* 메인 교육 콘텐츠 */
+.edu-content { padding-bottom: 100px; }
+
+/* 섹션 타이틀 */
+.course-section { margin-bottom: 80px; }
+.section-title {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 30px;
+}
+.icon-box {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    font-size: 20px;
+}
+.icon-box.orange { background: rgba(245, 158, 11, 0.2); }
+.icon-box.blue { background: rgba(59, 130, 246, 0.2); }
+.icon-box.purple { background: rgba(139, 92, 246, 0.2); }
+.section-title h2 { font-size: 28px; font-weight: 800; }
+
+/* 코스 카드 (레이아웃) */
+.course-card {
+    display: flex;
+    background-color: var(--bg-card);
+    border-radius: 20px;
+    overflow: hidden;
+    border: 1px solid var(--border-color);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+}
+.course-card.reverse { flex-direction: row-reverse; }
+
+.course-info {
+    flex: 1;
+    padding: 50px 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+}
+.course-image-box {
+    flex: 1;
+    background-color: #000;
+    min-height: 350px;
+}
+.course-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* 뱃지 및 메타 정보 */
+.badge {
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-size: 11px;
+    font-weight: 800;
+    color: #fff;
+    margin-bottom: 16px;
+    display: inline-block;
+}
+.badge-blue { background-color: rgba(59, 130, 246, 0.2); color: #60a5fa; border: 1px solid rgba(59, 130, 246, 0.5);}
+.badge-orange { background-color: rgba(245, 158, 11, 0.2); color: #fbbf24; border: 1px solid rgba(245, 158, 11, 0.5);}
+
+.course-type { font-size: 14px; color: var(--text-secondary); font-weight: 600; margin-bottom: 8px;}
+.course-info h3 { font-size: 32px; font-weight: 900; margin-bottom: 20px; line-height: 1.2;}
+.course-info p { font-size: 16px; color: var(--text-secondary); margin-bottom: 30px; }
+
+/* 크리에이터 카드 */
+.creator-card {
+    background: linear-gradient(135deg, #18181b, #27272a);
+    border-radius: 20px;
+    padding: 40px;
+    border: 1px solid var(--border-color);
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+.creator-header {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+}
+.creator-avatar {
+    position: relative;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background-color: #000;
+    overflow: hidden;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+}
+.creator-avatar img { width: 100%; height: 100%; object-fit: cover; opacity: 0.7;}
+.creator-avatar .emoji { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 40px; }
+.creator-title h3 { font-size: 36px; font-weight: 900; margin-bottom: 4px;}
+.verified { color: #10b981; font-size: 14px; font-weight: 700; }
+.creator-body p { font-size: 18px; color: var(--text-secondary); margin-bottom: 30px; max-width: 800px;}
+.creator-buttons { display: flex; gap: 16px; }
+
+/* 푸터 (공통) */
+.site-footer { background: #09090b; padding: 60px 0 30px; color: var(--text-secondary); }
+.footer-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 40px; margin-bottom: 40px; }
+.footer-col strong { display: block; color: #fff; margin-bottom: 20px; font-size: 16px;}
+.footer-col a { display: block; margin-bottom: 12px; font-size: 14px; transition: 0.2s; }
+.footer-col a:hover { color: #fff; }
+.footer-bottom { border-top: 1px solid var(--border-color); padding-top: 30px; display: flex; justify-content: space-between; font-size: 12px; }
+
+/* 모바일 반응형 처리 */
+@media (max-width: 768px) {
+    .course-card, .course-card.reverse { flex-direction: column; }
+    .course-image-box { min-height: 250px; }
+    .edu-hero h1 { font-size: 40px; }
+    .creator-buttons { flex-direction: column; }
+    .footer-grid { grid-template-columns: 1fr 1fr; }
+}
