@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BlendPro - Sign In</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./css/login.css">
+    <script src="https://code.jquery.com/jquery-4.0.0.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('.eye-icon').on('click', function() {
+                let $pw = $('#password');
+                if ($pw.attr('type') === 'password') {
+                    $pw.attr('type', 'text');
+                    $(this).text('🙈');
+                } else {
+                    $pw.attr('type', 'password');
+                    $(this).text('👁');
+                }
+            });
+        });
+    </script>
+</head>
+<body>
+    <div class="login-wrapper">
+        <!-- 왼쪽 사이드 (마케팅 & 정보) -->
+        <div class="login-left">
+            <div class="logo">
+                <span class="logo-icon">⬡</span> BlendPro
+            </div>
+            <div class="left-content">
+                <span class="welcome-text">WELCOME BACK</span>
+                <h1>Your 3D Workflow Starts Here.</h1>
+                <p class="description">Access your purchased assets, manage your library, and connect with a global community of 3D artists.</p>
+                
+                <ul class="feature-list">
+                    <li><span class="check-icon">◉</span> Instant access to all purchased assets</li>
+                    <li><span class="check-icon">◉</span> Sync your library across devices</li>
+                    <li><span class="check-icon">◉</span> Exclusive member-only deals & early releases</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- 오른쪽 사이드 (로그인 폼) -->
+        <div class="login-right">
+            <div class="form-container">
+                <h2>Sign in to BlendPro</h2>
+                <p class="subtitle">Don't have an account? Create one in seconds.</p>
+
+                <form class="login-form">
+                    <div class="input-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" placeholder="you@example.com">
+                    </div>
+                    
+                    <div class="input-group">
+                        <div class="label-row">
+                            <label for="password">Password</label>
+                            <a href="#" class="forgot-link">Forgot password?</a>
+                        </div>
+                        <div class="password-wrapper">
+                            <input type="password" id="password" placeholder="••••••••">
+                            <span class="eye-icon">👁</span>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn-submit">Sign In →</button>
+                </form>
+
+                <p class="signup-link">
+                    Don't have an account? <a href="#">Create one</a>
+                </p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,225 @@
+/* 다크 테마 기본 변수 설정 */
+:root {
+    --bg-main: #121212;
+    --bg-header: #1a1a1a;
+    --bg-card: #1a1a1a;
+    --text-primary: #ffffff;
+    --text-secondary: #a1a1aa;
+    --border-color: #333333;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
+}
+
+body {
+    background-color: var(--bg-main);
+    color: var(--text-primary);
+    line-height: 1.6;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.container {
+    max-width: 1300px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* 네비게이션 바 */
+.navbar {
+    background-color: var(--bg-main);
+    padding: 20px 0;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.logo { font-size: 24px; font-weight: 800; display: flex; align-items: center; gap: 8px;}
+.nav-links a { margin: 0 16px; font-size: 14px; font-weight: 600; color: var(--text-secondary); transition: 0.2s;}
+.nav-links a:hover, .nav-links a.active { color: var(--text-primary); }
+.nav-icons span { margin-left: 16px; cursor: pointer; color: var(--text-secondary);}
+
+/* 뉴스 헤더 & 카테고리 탭 */
+.news-header {
+    background-color: var(--bg-header);
+    padding: 60px 0 40px;
+    margin-bottom: 40px;
+}
+.news-header h1 {
+    font-size: 48px;
+    font-weight: 900;
+    margin-bottom: 12px;
+}
+.news-header p {
+    font-size: 18px;
+    color: var(--text-secondary);
+    margin-bottom: 30px;
+}
+.category-tabs {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+.tab {
+    background-color: transparent;
+    color: var(--text-secondary);
+    border: 1px solid var(--border-color);
+    padding: 8px 20px;
+    border-radius: 30px;
+    font-weight: 700;
+    font-size: 12px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+.tab:hover { border-color: var(--text-secondary); color: var(--text-primary); }
+.tab.active { background-color: var(--text-primary); color: #000; border-color: var(--text-primary); }
+
+/* 기사 그리드 레이아웃 (핵심 마법 구간!) */
+.news-grid-section {
+    padding-bottom: 100px;
+}
+.articles-grid {
+    display: grid;
+    /* PC 화면에서 4개의 열(Column)로 나눕니다 */
+    grid-template-columns: repeat(4, 1fr);
+    gap: 30px;
+    margin-bottom: 60px;
+}
+
+/* 카드 공통 스타일 */
+.card {
+    background-color: var(--bg-card);
+    border-radius: 12px;
+    overflow: hidden;
+    transition: transform 0.3s ease;
+    border: 1px solid var(--border-color);
+}
+.card:hover { transform: translateY(-5px); }
+.card-img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+}
+.card-body { padding: 24px; }
+
+/* 메인 추천 기사 (그리드에서 2칸씩 차지하도록 설정) */
+.featured-card {
+    grid-column: span 2;
+    grid-row: span 2;
+}
+.featured-card .card-img { height: 400px; }
+.featured-card h2 { font-size: 28px; font-weight: 900; margin-bottom: 16px; line-height: 1.3;}
+.featured-card p { font-size: 16px; color: var(--text-secondary); margin-bottom: 24px; }
+
+.card h3 { font-size: 18px; font-weight: 800; margin-bottom: 16px; line-height: 1.4;}
+
+/* 뱃지(카테고리 라벨) 스타일 */
+.badge {
+    display: inline-block;
+    padding: 4px 10px;
+    border-radius: 6px;
+    color: #fff;
+    font-size: 10px;
+    font-weight: 900;
+    margin-bottom: 16px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+.badge-red { background: #ff3366; }
+.badge-blue { background: #0066cc; }
+.badge-orange { background: #e47e1d; }
+.badge-purple { background: #8b5cf6; }
+.badge-green { background: #10b981; }
+.badge-pink { background: #ec4899; }
+
+/* 글쓴이 및 날짜 */
+.card-meta {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 12px;
+    margin-top: auto;
+}
+.card-meta strong { color: var(--text-primary); }
+.card-meta span { color: var(--text-secondary); font-weight: 700; }
+
+/* 버튼 */
+.load-more-container { text-align: center; }
+.btn-outline {
+    background: transparent;
+    color: var(--text-primary);
+    border: 1px solid var(--border-color);
+    padding: 14px 32px;
+    border-radius: 8px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: 0.3s;
+}
+.btn-outline:hover { background: #222; border-color: var(--text-secondary); }
+
+/* 푸터 (메인 페이지와 동일한 다크 버전) */
+.site-footer {
+    background: #000;
+    color: var(--text-secondary);
+    padding: 60px 0 30px;
+}
+.footer-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 40px;
+    margin-bottom: 40px;
+}
+.footer-col strong { display: block; color: #fff; margin-bottom: 20px; font-size: 16px; }
+.footer-col a { display: block; margin-bottom: 12px; font-size: 14px; transition: 0.2s; }
+.footer-col a:hover { color: #fff; }
+.footer-bottom {
+    border-top: 1px solid var(--border-color);
+    padding-top: 30px;
+    display: flex;
+    justify-content: space-between;
+    font-size: 12px;
+}
+.footer-links a { margin-left: 20px; }
+
+/* 모바일/태블릿 반응형 처리 */
+@media (max-width: 992px) {
+    .articles-grid { grid-template-columns: 1fr 1fr; }
+    .featured-card { grid-column: span 2; }
+}
+@media (max-width: 768px) {
+    .articles-grid, .footer-grid { grid-template-columns: 1fr; }
+    .featured-card { grid-column: span 1; }
+    .featured-card .card-img { height: 250px; }
+}
+
+/* --- 네비게이션바 Sign In 버튼 스타일 --- */
+.btn-signin {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(228, 126, 29, 1); /* 오리지널 오렌지색 */
+    color: #ffffff;
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    text-decoration: none;
+    padding: 8px 16px;
+    border-radius: 8px;
+    margin-left: 10px;
+    transition: background-color 0.2s ease;
+}
+
+/* 마우스를 올렸을 때 버튼 색상이 살짝 진해지는 효과 (선택사항) */
+.btn-signin:hover {
+    background-color: rgba(200, 100, 20, 1);
+}

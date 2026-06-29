@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BlendPro - Store</title>
+    <link rel="stylesheet" href="./css/store.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-4.0.0.js"></script>
+    <script>
+    $(document).ready(function() {
+        // 모든 필터 요소 선택
+        const $products = $('.product-card');
+        const $checkboxes = $('.filter-cb');
+        const $tags = $('.quick-tags .tag');
+        
+        let activeTag = 'all';
+
+        // 1. 상단 태그 버튼 클릭 이벤트
+        $tags.click(function() {
+            $tags.removeClass('active');
+            $(this).addClass('active');
+            activeTag = $(this).attr('data-filter');
+            updateFilter();
+        });
+
+        // 2. 체크박스 변경 이벤트
+        $checkboxes.on('change', updateFilter);
+
+        // 3. 통합 필터링 함수
+        function updateFilter() {
+            // 모든 그룹의 체크된 값들을 각각 배열로 가져옴
+            const activeCats = $('.filter-cb[data-group="category"]:checked').map(function(){ return $(this).val(); }).get();
+            const activePrices = $('.filter-cb[data-group="price"]:checked').map(function(){ return $(this).val(); }).get();
+            const activeSoftwares = $('.filter-cb[data-group="software"]:checked').map(function(){ return $(this).val(); }).get();
+
+            $products.each(function() {
+                const $p = $(this);
+                const pCat = $p.attr('data-category');
+                const pPrice = $p.attr('data-price');
+                const pSoft = $p.attr('data-software');
+
+                // 조건 검사: 상단 태그 & 각 체크박스 그룹
+                const matchTag = (activeTag === 'all' || activeTag === pCat);
+                const matchCat = (activeCats.length === 0 || activeCats.includes(pCat));
+                const matchPrice = (activePrices.length === 0 || activePrices.includes(pPrice));
+                const matchSoft = (activeSoftwares.length === 0 || activeSoftwares.includes(pSoft));
+
+                // 모든 조건이 참일 때만 표시
+                if (matchTag && matchCat && matchPrice && matchSoft) {
+                    $p.fadeIn(300);
+                } else {
+                    $p.fadeOut(300);
+                }
+            });
+        }
+    });
+    </script>
+</head>
+<body>
+
+    <header class="navbar">
+        <div class="container nav-container">
+            <div class="logo">
+                <a href="main.html"><span class="logo-icon">⬡</span> BlendPro</a>
+            </div>
+            <nav class="nav-links">
+                <a href="news.html">News</a>
+                <a href="store.html" class="active">Store</a>
+                <a href="education.html">Education</a>
+            </nav>
+            <div class="nav-icons">
+                <span>🔍</span>
+                <span>🛒</span>
+                <a href="login.html" class="btn-signin">Sign In</a>
+            </div>
+        </div>
+    </header>
+
+    <section class="store-top-bar">
+        <div class="container top-bar-inner">
+            <div class="search-box">
+                <span class="search-icon">🔍</span>
+                <input type="text" placeholder="Search models, materials, add-ons...">
+            </div>
+            <div class="quick-tags">
+                <button class="tag active" data-filter="all">All</button>
+                <button class="tag" data-filter="3d-models">3D Models</button>
+                <button class="tag" data-filter="add-ons">Add-ons</button>
+                <button class="tag" data-filter="materials">Materials</button>
+                <button class="tag" data-filter="vfx">VFX</button>
+            </div>
+        </div>
+    </section>
+
+    <main class="store-layout container">
+        
+        <aside class="sidebar">
+            <div class="filter-group">
+                <h3>Categories</h3>
+                <label class="filter-item"><input type="checkbox" class="filter-cb" data-group="category" value="asset"> Asset</label>
+                <label class="filter-item"><input type="checkbox" class="filter-cb" data-group="category" value="3d-models"> 3D Models</label>
+                <label class="filter-item"><input type="checkbox" class="filter-cb" data-group="category" value="add-ons"> Add-ons / Scripts</label>
+                <label class="filter-item"><input type="checkbox" class="filter-cb" data-group="category" value="materials"> Materials / Shaders</label>
+                <label class="filter-item"><input type="checkbox" class="filter-cb" data-group="category" value="decals"> Decals</label>
+                <label class="filter-item"><input type="checkbox" class="filter-cb" data-group="category" value="rig"> Rig</label>
+                <label class="filter-item"><input type="checkbox" class="filter-cb" data-group="category" value="environment"> Environment</label>
+                <label class="filter-item"><input type="checkbox" class="filter-cb" data-group="category" value="kitbash"> Kitbash</label>
+            </div>
+
+            <div class="filter-group">
+                <h3>Price</h3>
+                <label class="filter-item"><input type="checkbox" class="filter-cb" data-group="price" value="free"> Free</label>
+                <label class="filter-item"><input type="checkbox" class="filter-cb" data-group="price" value="under20"> Under $20</label>
+                <label class="filter-item"><input type="checkbox" class="filter-cb" data-group="price" value="20to50"> $20 - $50</label>
+                <label class="filter-item"><input type="checkbox" class="filter-cb" data-group="price" value="over50"> $50+</label>
+            </div>
+
+            <div class="filter-group">
+                <h3>Software</h3>
+                <label class="filter-item"><input type="checkbox" class="filter-cb" data-group="software" value="blender"> Blender</label>
+                <label class="filter-item"><input type="checkbox" class="filter-cb" data-group="software" value="unreal"> Unreal Engine</label>
+                <label class="filter-item"><input type="checkbox" class="filter-cb" data-group="software" value="unity"> Unity</label>
+            </div>
+        </aside>
+
+        <section class="product-content">
+            <div class="content-header">
+                <h2>Trending Assets</h2>
+                <div class="sort-box">
+                    <span>Sort by:</span>
+                    <select>
+                        <option>Recommended</option>
+                        <option>Price: Low to High</option>
+                        <option>Price: High to Low</option>
+                        <option>Highest Rated</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="products-grid">
+                
+                <article class="product-card" data-category="environment" data-price="over50" data-software="unreal">
+                    <div class="card-img-box">
+                        <span class="top-badge badge-yellow">Best Seller</span>
+                        <img src="./images/v1_605.png" alt="Cyberpunk City" class="card-img">
+                    </div>
+                    <div class="card-info">
+                        <span class="category-text">Environment</span>
+                        <h3 class="product-title">Cyberpunk City Megapack</h3>
+                        <span class="author">NeonForge Studios</span>
+                        <div class="card-footer">
+                            <div class="rating">⭐ 4.9 <span>(342)</span></div>
+                            <div class="price">$149.99</div>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="product-card" data-category="3d-models" data-price="20to50" data-software="blender">
+                    <div class="card-img-box">
+                        <img src="./images/v1_627.png" alt="Kitbash" class="card-img">
+                    </div>
+                    <div class="card-info">
+                        <span class="category-text">3D Models</span>
+                        <h3 class="product-title">Hard Surface Kitbash Vol. 1</h3>
+                        <span class="author">MechWorks</span>
+                        <div class="card-footer">
+                            <div class="rating">⭐ 4.7 <span>(128)</span></div>
+                            <div class="price">$24.99</div>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="product-card" data-category="materials" data-price="under20" data-software="blender">
+                    <div class="card-img-box">
+                        <span class="top-badge badge-blue">Staff Pick</span>
+                        <img src="./images/v1_647.png" alt="Materials" class="card-img">
+                    </div>
+                    <div class="card-info">
+                        <span class="category-text">Materials</span>
+                        <h3 class="product-title">Procedural Rusty Metal Nodes</h3>
+                        <span class="author">ShaderGuru</span>
+                        <div class="card-footer">
+                            <div class="rating">⭐ 5.0 <span>(56)</span></div>
+                            <div class="price">$12.00</div>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="product-card" data-category="environment" data-price="over50" data-software="unreal">
+                    <div class="card-img-box">
+                        <img src="./images/v1_669.png" alt="ArchViz" class="card-img">
+                    </div>
+                    <div class="card-info">
+                        <span class="category-text">Environment</span>
+                        <h3 class="product-title">ArchViz Interior Starter Pack</h3>
+                        <span class="author">LumaDesign</span>
+                        <div class="card-footer">
+                            <div class="rating">⭐ 4.8 <span>(210)</span></div>
+                            <div class="price">$89.50</div>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="product-card" data-category="vfx" data-price="free" data-software="unity">
+                    <div class="card-img-box">
+                        <span class="top-badge badge-green">Free</span>
+                        <img src="./images/v1_689.png" alt="Abstract" class="card-img">
+                    </div>
+                    <div class="card-info">
+                        <span class="category-text">VFX</span>
+                        <h3 class="product-title">Abstract Geometric Elements</h3>
+                        <span class="author">VFXVault</span>
+                        <div class="card-footer">
+                            <div class="rating">⭐ 4.6 <span>(890)</span></div>
+                            <div class="price text-green">Free</div>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="product-card" data-category="materials" data-price="20to50" data-software="blender">
+                    <div class="card-img-box">
+                        <span class="top-badge badge-red">Hot</span>
+                        <img src="./images/v1_711.png" alt="Skin Shader" class="card-img">
+                    </div>
+                    <div class="card-info">
+                        <span class="category-text">Materials</span>
+                        <h3 class="product-title">Hyper-Realistic Skin Shader</h3>
+                        <span class="author">HumanoidArt</span>
+                        <div class="card-footer">
+                            <div class="rating">⭐ 4.9 <span>(412)</span></div>
+                            <div class="price">$39.99</div>
+                        </div>
+                    </div>
+                </article>
+            </div>
+
+            <div class="load-more">
+                <button class="btn btn-outline">Load More</button>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container footer-grid">
+            <div class="footer-col">
+                <strong>BlendPro</strong>
+                <a href="#">About</a><a href="#">Studio</a><a href="#">Foundation</a>
+            </div>
+            <div class="footer-col">
+                <strong>Download</strong>
+                <a href="#">Latest Release</a><a href="#">LTS Releases</a><a href="#">Requirements</a>
+            </div>
+            <div class="footer-col">
+                <strong>Store</strong>
+                <a href="#">Marketplace</a><a href="#">Materials</a><a href="#">Add-ons</a>
+            </div>
+            <div class="footer-col">
+                <strong>Support</strong>
+                <a href="#">Manual</a><a href="#">Tutorials</a><a href="#">Community</a>
+            </div>
+        </div>
+        <div class="container footer-bottom">
+            <p>© 2026 BlendPro Foundation. Artworks by respective owners.</p>
+            <div class="footer-links">
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Service</a>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
